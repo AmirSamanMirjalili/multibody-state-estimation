@@ -142,6 +142,7 @@ TEST(Jacobians, FactorDynamicsIndepCoords)
 		timlog.enter("factorsDynIndep.theoretical_jacob");
 
 		factorDyn->evaluateError(z, dotz, ddotz, &H[0], &H[1], &H[2]);
+		//    factorDyn->evaluateError(z, dotz, ddotz, H[0], H[1], H[2]);
 
 		timlog.leave("factorsDynIndep.theoretical_jacob");
 

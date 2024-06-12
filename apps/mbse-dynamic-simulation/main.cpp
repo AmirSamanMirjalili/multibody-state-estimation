@@ -143,6 +143,7 @@ static void runDynamicSimulation()
 	using dynamics_t = CDynamicSimulator_ALi3_Dense;
 	// using dynamics_t = CDynamicSimulator_R_matrix_dense;
 
+	
 	dynamics_t dynSimul(aMBS);
 
 	// dynSimul.params_penalty.alpha = 1e7;
@@ -344,4 +345,5 @@ int main(int argc, char** argv)
 		cerr << e.what() << endl;
 		return 1;
 	}
+
 }

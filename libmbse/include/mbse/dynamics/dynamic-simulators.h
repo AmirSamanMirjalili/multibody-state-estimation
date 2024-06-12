@@ -442,7 +442,7 @@ class CDynamicSimulator_AugmentedLagrangian_KLU
 	CDynamicSimulator_AugmentedLagrangian_KLU(
 		const std::shared_ptr<AssembledRigidModel> arm_ptr);
 	virtual ~CDynamicSimulator_AugmentedLagrangian_KLU();
-
+    
 	TOrderingMethods ordering;
 
 	const Eigen::SparseMatrix<double>& getA() const { return A_; }
@@ -503,6 +503,7 @@ class CDynamicSimulator_AugmentedLagrangian_Dense
 class CDynamicSimulator_ALi3_Dense : public CDynamicSimulatorBasePenalty
 {
    public:
+	
 	CDynamicSimulator_ALi3_Dense(
 		const std::shared_ptr<AssembledRigidModel> arm_ptr);
 	virtual ~CDynamicSimulator_ALi3_Dense();
@@ -529,7 +530,6 @@ class CDynamicSimulator_ALi3_Dense : public CDynamicSimulatorBasePenalty
 	// Data updated during solve(), then reused during post_iteration():
 	Eigen::MatrixXd A_, Phi_q_, dotPhi_q_;
 	Eigen::FullPivLU<Eigen::MatrixXd> A_lu_;
-
 	Eigen::VectorXd Lambda_;
 };
 

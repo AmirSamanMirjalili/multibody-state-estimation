@@ -182,7 +182,7 @@ void test_smoother()
 	smoother.params().maxIterations = arg_smoother_iterations.getValue();
 #else
 	gtsam::IncrementalFixedLagSmoother smoother(lag);
-
+	
 	// maxIterations = arg_smoother_iterations.getValue();
 	// smoother.params().optimizationParams =  gnparams;
 #endif

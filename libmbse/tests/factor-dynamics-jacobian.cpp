@@ -73,12 +73,12 @@ TEST(Jacobians, FactorDynamics)
 		// Create a dummy factor:
 		auto factorDyn = std::make_shared<FactorDynamics>(
 			&dynSimul, noise_dyn, Q(1), V(1), A(1));
-
+        
 		// For different instants of time and mechanism positions and
 		// velocities, test the factor jacobian:
 		const double t_end = 3.0;  // end simulation time
 		const double t_steps = 1.0;	 // "large steps" to run the tests at
-
+	    
 		dynSimul.params.time_step = 0.001;	// integrators timesteps
 
 		mrpt::system::CTimeLogger timlog;
@@ -106,6 +106,7 @@ TEST(Jacobians, FactorDynamics)
 			timlog.enter("factorsDyn.theoretical_jacob");
 
 			factorDyn->evaluateError(q, dotq, ddotq, &H[0], &H[1], &H[2]);
+			//    factorDyn->evaluateError(q, dotq, ddotq, H[0], H[1], H[2]);
 
 			timlog.leave("factorsDyn.theoretical_jacob");
 
@@ -151,3 +152,4 @@ TEST(Jacobians, FactorDynamics)
 		throw std::runtime_error(mrpt::exception_to_str(e));
 	}
 }
+

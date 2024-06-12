@@ -10,9 +10,13 @@
 
 #pragma once
 
+
+
 #include <mbse/factors/factor-common.h>
 #include <gtsam/nonlinear/NonlinearFactor.h>
 #include <mbse/AssembledRigidModel.h>
+
+
 
 namespace mbse
 {
