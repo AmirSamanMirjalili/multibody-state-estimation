@@ -26,7 +26,7 @@
 #include <gtsam/slam/BetweenFactor.h>
 #include <gtsam/slam/PriorFactor.h>
 #include <gtsam/nonlinear/BatchFixedLagSmoother.h>
-#include <gtsam_unstable/nonlinear/IncrementalFixedLagSmoother.h>
+// #include <gtsam_unstable/nonlinear/IncrementalFixedLagSmoother.h>
 #include <iostream>
 #include <mbse/AssembledRigidModel.h>
 #include <mbse/ModelDefinition.h>
