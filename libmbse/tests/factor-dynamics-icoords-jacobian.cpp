@@ -138,10 +138,17 @@ TEST(Jacobians, FactorDynamicsIndepCoords)
 		// valuesForQ.print("valuesForQ:");
 
 		// Evaluate theoretical Jacobians:
-		gtsam::Matrix H[3];
-		timlog.enter("factorsDynIndep.theoretical_jacob");
+		// gtsam::Matrix H[3];
+		// timlog.enter("factorsDynIndep.theoretical_jacob");
+		// Evaluate theoretical Jacobians:
+		gtsam::Matrix H0, H1, H2;
+		boost::optional<gtsam::Matrix&> H0_opt(H0);
+		boost::optional<gtsam::Matrix&> H1_opt(H1);
+		boost::optional<gtsam::Matrix&> H2_opt(H2);
 
-		factorDyn->evaluateError(z, dotz, ddotz, &H[0], &H[1], &H[2]);
+		timlog.enter("factorsDyn.theoretical_jacob");
+
+		factorDyn->evaluateError(z, dotz, ddotz, H0_opt, H1_opt, H2_opt);
 		//    factorDyn->evaluateError(z, dotz, ddotz, H[0], H[1], H[2]);
 
 		timlog.leave("factorsDynIndep.theoretical_jacob");

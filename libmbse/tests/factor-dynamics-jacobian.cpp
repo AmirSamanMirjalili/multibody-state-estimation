@@ -101,11 +101,24 @@ TEST(Jacobians, FactorDynamics)
 			const state_t dotq = state_t(aMBS->dotq_);
 			const state_t ddotq = state_t(aMBS->ddotq_);
 
+			// // Evaluate theoretical Jacobians:
+			// gtsam::Matrix H[3];
+			// timlog.enter("factorsDyn.theoretical_jacob");
+
+			// factorDyn->evaluateError(q, dotq, ddotq, &H[0], &H[1], &H[2]);
+
+
 			// Evaluate theoretical Jacobians:
-			gtsam::Matrix H[3];
+			gtsam::Matrix H0, H1, H2;
+			boost::optional<gtsam::Matrix&> H0_opt(H0);
+			boost::optional<gtsam::Matrix&> H1_opt(H1);
+			boost::optional<gtsam::Matrix&> H2_opt(H2);
+
 			timlog.enter("factorsDyn.theoretical_jacob");
 
-			factorDyn->evaluateError(q, dotq, ddotq, &H[0], &H[1], &H[2]);
+			factorDyn->evaluateError(q, dotq, ddotq, H0_opt, H1_opt, H2_opt);
+
+
 			//    factorDyn->evaluateError(q, dotq, ddotq, H[0], H[1], H[2]);
 
 			timlog.leave("factorsDyn.theoretical_jacob");
