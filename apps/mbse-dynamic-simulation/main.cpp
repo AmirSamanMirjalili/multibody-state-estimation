@@ -29,26 +29,39 @@ double REALTIME_FACTOR = 0.15;
 const double GUI_DESIRED_FPS = 75;	// Hz
 const bool SHOW_ENERGY_BALANCE = true;
 
-TCLAP::CmdLine cmd("mbse-dynamic-simulation", ' ');
+//TCLAP::CmdLine cmd("mbse-dynamic-simulation", ' ');
+//
+//TCLAP::ValueArg<std::string> arg_mechanism(
+//	"", "mechanism", "Mechanism model YAML file", true, "mechanism.yaml",
+//	"YAML model definition", cmd);
+//
+//TCLAP::ValueArg<double> arg_timestep(
+//	"t", "dt", "Timestep for fixed-step numerical integration", false, 1e-3,
+//	"Timestep[s]", cmd);
+//
+//TCLAP::SwitchArg arg_save_q(
+//	"", "save-q", "Saves decimated Q history to a txt file", cmd);
 
-TCLAP::ValueArg<std::string> arg_mechanism(
-	"", "mechanism", "Mechanism model YAML file", true, "mechanism.yaml",
-	"YAML model definition", cmd);
+//adding necessary arguments manually
+//mechanism yaml file
+string arg_mechanism = "/home/amir/Programming/GTSAM/multibody_state_estimation/multibody-state-estimation/FourBar.YAML";
 
-TCLAP::ValueArg<double> arg_timestep(
-	"t", "dt", "Timestep for fixed-step numerical integration", false, 1e-3,
-	"Timestep[s]", cmd);
+//timestep
+double arg_timestep = 1e-3;
 
-TCLAP::SwitchArg arg_save_q(
-	"", "save-q", "Saves decimated Q history to a txt file", cmd);
+//save q
+bool arg_save_q = false;
+
+
 
 void my_callback([[maybe_unused]] TSimulationStateRef& simul_state) {}
 
 static void runDynamicSimulation()
 {
 	// Load mechanism model:
-	const auto yamlData =
-		mrpt::containers::yaml::FromFile(arg_mechanism.getValue());
+
+//		const auto yamlData= mrpt::containers::yaml::FromFile(arg_mechanism.getValue());
+    const auto yamlData = mrpt::containers::yaml::FromFile(arg_mechanism);
 	const ModelDefinition model = ModelDefinition::FromYAML(yamlData);
 
 	Body::TRenderParams dynamic_rp;
@@ -157,7 +170,8 @@ static void runDynamicSimulation()
 
 	// Set params:
 	// -----------------------------
-	dynSimul.params.time_step = arg_timestep.getValue();
+//	dynSimul.params.time_step = arg_timestep.getValue();
+    dynSimul.params.time_step = arg_timestep;
 	dynSimul.params.ode_solver = ODE_RK4;
 	// dynSimul.params.ode_solver = ODE_Trapezoidal;
 	dynSimul.params.user_callback = simul_callback_t(my_callback);
@@ -320,8 +334,9 @@ static void runDynamicSimulation()
 		winE2.waitForKey();
 	}
 
-	if (arg_save_q.isSet())
-	{
+//	if (arg_save_q.isSet())
+
+    if (arg_save_q){
 		std::cout << "Saving decimated trajectory to: q.txt...\n";
 		Qs.resize(Q_entries, Qs.cols());
 		Qs.saveToTextFile("q.txt");
@@ -333,8 +348,8 @@ int main(int argc, char** argv)
     try
 	{
 		// Parse arguments:
-		if (!cmd.parse(argc, argv))
-			throw std::runtime_error("");  // should exit.
+//		if (!cmd.parse(argc, argv))
+//			throw std::runtime_error("");  // should exit.
 
 		runDynamicSimulation();
 
