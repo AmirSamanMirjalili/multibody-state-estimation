@@ -29,7 +29,7 @@ double REALTIME_FACTOR = 0.15;
 const double GUI_DESIRED_FPS = 75;	// Hz
 const bool SHOW_ENERGY_BALANCE = true;
 
-//TCLAP::CmdLine cmd("mbse-dynamic-simulation", ' ');
+TCLAP::CmdLine cmd("mbse-dynamic-simulation", ' ');
 
 TCLAP::ValueArg<std::string> arg_mechanism(
 	"", "mechanism", "Mechanism model YAML file", true, "mechanism.yaml",
