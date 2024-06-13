@@ -330,7 +330,7 @@ static void runDynamicSimulation()
 
 int main(int argc, char** argv)
 {
-    try
+	try
 	{
 		// Parse arguments:
 		if (!cmd.parse(argc, argv))
